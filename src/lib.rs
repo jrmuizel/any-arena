@@ -12,8 +12,8 @@
 
 #![feature(alloc)]
 #![feature(core_intrinsics)]
-#![feature(heap_api)]
 #![feature(raw)]
+#![feature(raw_vec_internals)]
 
 extern crate alloc;
 

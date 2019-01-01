@@ -16,7 +16,6 @@ use std::mem;
 use std::ptr;
 use std::slice;
 
-use alloc::heap;
 use alloc::raw_vec::RawVec;
 
 /// A slower reflection-based arena that can allocate objects of any type.
@@ -302,7 +301,7 @@ struct TyDesc {
 unsafe fn get_tydesc<T>() -> *const TyDesc {
     use std::raw::TraitObject;
 
-    let ptr = &*(heap::EMPTY as *const T);
+    let ptr = &*(mem::align_of::<T>() as *const T);
 
     // Can use any trait that is implemented for all types.
     let obj = mem::transmute::<&AllTypes, TraitObject>(ptr);
